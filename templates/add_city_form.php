@@ -20,25 +20,19 @@
         </div>
         <div class="form-group">
             <input name="rent" placeholder="Median Rent" type="number" min="1"/>
-            <p class="help-block">You can find this info using the Census Bureau's <a href=http://factfinder.census.gov/faces/tableservices/jsf/pages/productview.xhtml?pid=ACS_12_5YR_B25064&prodType=table>American FactFinder</a>. Click "Add/Remove Geographies" and search for your city.</p>
+            <p class="help-block">You can find this info using the Census Bureau's <a href=http://factfinder.census.gov/bkmk/table/1.0/en/ACS/12_5YR/B25064/312M100US418600606000>American FactFinder</a>. Click "Add/Remove Geographies" and search for your city.</p>
         </div>
         <div class="form-group">
+            <label for="walk">You can look these up on the <a href="http://www.walkscore.com">WalkScore site</a>.</p>
             <input name="walk" placeholder="WalkScore" type="number" min="1"/>
-            <p class="help-block">You can look this up on the <a href="walkscore.com">WalkScore site</a>.</p>
-        </div>
-        <div class="form-group">
-            <input name="bike" placeholder="BikeScore" type="number" min="1"/>
-            <p class="help-block">You can look this up on the <a href="walkscore.com">WalkScore site</a>.</p>
-        </div>
-        <div class="form-group">
             <input name="transit" placeholder="TransitScore" type="number" min="1"/>
-            <p class="help-block">You can look this up on the <a href="walkscore.com">WalkScore site</a>.</p>
+            <input name="bike" placeholder="BikeScore" type="number" min="1"/>
         </div>
         <?php if (!empty($id)): ?>
         <div class="form-group">
-            <input type="hidden" value=<?= $id ?>/>
+            <input name="id" type="hidden" value=<?= $id ?>/>
         </div>
-        <? endif ?>
+        <?php endif ?>
         <div class="form-group">
             <button type="submit" class="btn btn-default">Add City</button>
         </div>

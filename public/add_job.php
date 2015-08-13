@@ -10,18 +10,18 @@
         if ($_POST["city"] == "new")
         {
             // add row to query-in-progress database
-            query("INSERT INTO inprogress (user, company, position, salary, notes) VALUES(?, ?, ?, ?, ?, ?)", $_SESSION["id"], $_POST["company"], $_POST["position"], $_POST["salary"], $_POST["notes"]);
+            query("INSERT INTO inprogress (user, company, position, salary, status, notes) VALUES(?, ?, ?, ?, ?, ?)", $_SESSION["id"], $_POST["company"], $_POST["position"], $_POST["salary"], $_POST["status"], $_POST["notes"]);
 
             // get id of just-added entry
             $rows = query("SELECT LAST_INSERT_ID() AS id");
             $id = $rows[0]["id"];
 
             // redirect to add-a-city page with id as get parameter
-            redirect("/add_city.php?id=" . $id)
+            redirect("/add_city.php?id=" . $id);
         }
         
         // add row to jobs database
-        query("INSERT INTO jobs (user, city, company, position, salary, notes) VALUES(?, ?, ?, ?, ?, ?)", $_SESSION["id"], $_POST["city"], $_POST["company"], $_POST["position"], $_POST["salary"], $_POST["notes"]);
+        query("INSERT INTO jobs (user, city, company, position, salary, status, notes) VALUES(?, ?, ?, ?, ?, ?, ?)", $_SESSION["id"], $_POST["city"], $_POST["company"], $_POST["position"], $_POST["salary"], $_POST["status"], $_POST["notes"]);
 
         // redirect to main jobs list
         redirect("/");
@@ -29,7 +29,7 @@
     else
     {
         // if we have a GET parameter saying we came from adding a city
-        if (!empty($_GET["id"])
+        if (!empty($_GET["id"]))
         {
             // get the in-progress info from the database
             $rows = query("SELECT * FROM inprogress WHERE id = ?", $_GET["id"]);
@@ -47,16 +47,23 @@
             // get city names + states from list of ids
             foreach ($raw_cities as $city_id)
             {
-                $names = query("SELECT name, state FROM cities WHERE id = ?", $city_id);
+                $names = query("SELECT name, state FROM cities WHERE id = ?", $city_id["city"]);
 
                 $cities[] = [
                     "city_name" => $names[0]["name"] . ", " . $names[0]["state"],
-                    "id" => $city_id
+                    "id" => $city_id["city"]
                 ];
             }
 
+            $new_city = 0;
+            // remember what city we just added
+            if (!empty($_GET["city"]))
+            {
+                $new_city = $_GET["city"];
+            }
+
             // render form with in-progress info
-            render("add_job_form.php", ["inprogress" => $rows[0], "cities" => $cities, "title" => "Add A Job"]);
+            render("add_job_form.php", ["inprogress" => $rows[0], "new_city" => $new_city, "cities" => $cities, "title" => "Add A Job"]);
         }
         else
         {
@@ -65,14 +72,17 @@
 
             $cities = [];
             // get city names + states from list of ids
-            foreach ($raw_cities as $city_id)
+            if (!empty($raw_cities))
             {
-                $names = query("SELECT name, state FROM cities WHERE id = ?", $city_id);
+                foreach ($raw_cities as $city_id)
+                {
+                    $names = query("SELECT name, state FROM cities WHERE id = ?", $city_id["city"]);
 
-                $cities[] = [
-                    "city_name" => $names[0]["name"] . ", " . $names[0]["state"],
-                    "id" => $city_id
-                ];
+                    $cities[] = [
+                        "city_name" => $names[0]["name"] . ", " . $names[0]["state"],
+                        "id" => $city_id["city"]
+                    ];
+                }
             }
 
             // render form

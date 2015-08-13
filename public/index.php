@@ -6,22 +6,23 @@
     // get all cities associated with current user, ordered by rank
     $rows = query("SELECT * FROM usercities WHERE user = ? ORDER BY rank", $_SESSION["id"]);
 
-    if ($rows === false)
+    if (empty($rows))
     {
-        // TODO: render with message saying you don't have any cities and should add some
+        // render with message saying you don't have any cities and should add some
+        render("start.php", ["message" => "You haven't added any cities. <a href='add_city.php'>Add a city</a> to get started.", "title" => "Jobs"]);
     }
 
     $cities = [];
     foreach ($rows as $row)
     {
-        $city = query("SELECT * FROM cities WHERE id = ?", $job["city"]);
-        $city_name = $city[0]["name"] . ", " . $cities[0]["state"];
+        $city = query("SELECT * FROM cities WHERE id = ?", $row["city"])[0];
+        $city_name = $city["name"] . ", " . $city["state"];
         
         // get all jobs belonging to current user in this city
-        $jobs = query("SELECT * FROM jobs WHERE user = ? AND city = ?", $_SESSION["id"], $row);
+        $jobs = query("SELECT * FROM jobs WHERE user = ? AND city = ?", $_SESSION["id"], $row["city"]);
 
         $positions = [];
-        if ($jobs !== $false)
+        if (!empty($jobs))
         {
             foreach ($jobs as $job)
             {

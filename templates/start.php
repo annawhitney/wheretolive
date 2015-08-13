@@ -19,10 +19,12 @@
                 <th>TransitScore</th>
             </tr>
         </thead>
-    </table>
-    <?php foreach ($cities as $city): ?>
-    <table class="table table-striped">
+    <?php if (!empty($message)): ?>
+    <p><?= $message ?></p>
+    <?php endif ?>
+    <?php if (!empty($cities)): ?>
         <tbody>
+        <?php foreach ($cities as $city): ?>
             <tr>
                 <td><?= $city["rank"] ?></td>
                 <td><?= $city["city_name"] ?></td>
@@ -32,31 +34,34 @@
                 <td><?= $city["bike"] ?></td>
                 <td><?= $city["transit"] ?></td>
             </tr>
-        </tbody>
-    </table>
-    <?php if (!empty($city["positions"])): ?>
-    <table class="table table-condensed">
-        <thead>
+            <?php if (!empty($city["positions"])): ?>
             <tr>
-                <th>Company</th>
-                <th>Position</th>
-                <th>Salary</th>
-                <th>Notes</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($city["positions"] as $position): ?>
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Position</th>
+                            <th>Salary</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($city["positions"] as $position): ?>
 
-            <tr>
-                <td><?= $position["company"] ?></td>
-                <td><?= $position["position"] ?></td>
-                <td><a href=/cities?city=<?= $position["city"] ?>><?= $position["city"] ?></a></td>
-                <td>$<?= $position["salary"] ?></td>
-                <td><?= $position["notes"] ?></td>
-            </tr>
+                        <tr>
+                            <td><?= $position["company"] ?></td>
+                            <td><?= $position["position"] ?></td>
+                            <td>$<?= $position["salary"] ?></td>
+                            <td><?= $position["notes"] ?></td>
+                        </tr>
 
-        <? endforeach ?>
+                    <?php endforeach ?>
+                    </tbody>
+                </table>
+            </tr>
+            <?php endif ?>
+        <?php endforeach ?>
+      </tbody>
+    <?php endif ?>
     </table>
-    <? endif ?>
-    <? endforeach ?>
 </div>
