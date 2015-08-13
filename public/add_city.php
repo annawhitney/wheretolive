@@ -6,24 +6,23 @@
     // if form was submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-        // if user wants to add a new city
-        if ($_POST["city"] == "new")
-        {
-            // add row to query-in-progress database
-            query("INSERT INTO inprogress (user, company, position, salary, notes) VALUES(?, ?, ?, ?, ?, ?)", $_SESSION["id"], $_POST["company"], $_POST["position"], $_POST["salary"], $_POST["notes"]);
+        // add row to cities database
+        query("INSERT INTO cities (name, state, population, rent, walkscore, bikescore, transitscore) VALUES(?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)", $_POST["name"], $_POST["state"], $_POST["population"], $_POST["rent"], $_POST["walk"], $_POST["bike"], $_POST["transit"]);
 
-            // get id of just-added entry
-            $rows = query("SELECT LAST_INSERT_ID() AS id");
-            $id = $rows[0]["id"];
+        // get id of just-added entry
+        $rows = query("SELECT LAST_INSERT_ID() AS id");
+        $city_id = $rows[0]["id"];
 
-            // redirect to add-a-city page with id as get parameter
-            redirect("/add_city.php?id=" . $id)
-        }
-        
-        // add row to jobs database
-        query("INSERT INTO jobs (user, city, company, position, salary, notes) VALUES(?, ?, ?, ?, ?, ?)", $_SESSION["id"], /* TODO: figure out how to handle city */, $_POST["company"], $_POST["position"], $_POST["salary"], $_POST["notes"]);
+        // increment user's number of cities
+        query("UPDATE users SET numcities=numcities+1 WHERE id=?", $_SESSION["id"]);
 
-        // redirect to main jobs list
+        // get user's new number of cities
+        $num = query("SELECT numcities FROM users WHERE id=?", $_SESSION["id"]);
+
+        // add row to usercities database
+        query("INSERT INTO usercities (user, city, rank) VALUES(?, ?, ?)", $_SESSION["id"], $city_id, $num[0]["numcities"]);
+
+        // redirect to homepage
         redirect("/");
     }
     else

@@ -21,7 +21,7 @@
         }
         
         // add row to jobs database
-        query("INSERT INTO jobs (user, city, company, position, salary, notes) VALUES(?, ?, ?, ?, ?, ?)", $_SESSION["id"], /* TODO: figure out how to handle city */, $_POST["company"], $_POST["position"], $_POST["salary"], $_POST["notes"]);
+        query("INSERT INTO jobs (user, city, company, position, salary, notes) VALUES(?, ?, ?, ?, ?, ?)", $_SESSION["id"], $_POST["city"], $_POST["company"], $_POST["position"], $_POST["salary"], $_POST["notes"]);
 
         // redirect to main jobs list
         redirect("/");
