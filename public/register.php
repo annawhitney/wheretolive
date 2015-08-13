@@ -25,7 +25,7 @@
         }
 
         // else insert user into database
-        $query = query("INSERT INTO users (username, hash, cash) VALUES(?, ?, 10000.00)", $_POST["username"], crypt($_POST["password"]));
+        $query = query("INSERT INTO users (username, hash, numcities) VALUES(?, ?, 0)", $_POST["username"], crypt($_POST["password"]));
 
         // if query fails
         if ($query === false)
