@@ -1,3 +1,5 @@
 # wheretolive
 
-A hacky PHP tool to compare city and job data.
+A tool to compare city and job data.
+
+Soon to live at wheretolive.us!
