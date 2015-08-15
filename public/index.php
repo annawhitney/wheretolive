@@ -3,6 +3,10 @@
     // configuration
     require("../includes/config.php"); 
 
+    // get user info
+    $users = query("SELECT * FROM users WHERE id = ?", $_SESSION["id"]);
+    $user = $users[0];
+
     // get all cities associated with current user, ordered by rank
     $rows = query("SELECT * FROM usercities WHERE user = ? ORDER BY rank", $_SESSION["id"]);
 
@@ -50,6 +54,6 @@
     }
 
     // render jobs
-    render("start.php", ["cities" => $cities, "title" => "Jobs"]);
+    render("start.php", ["user" => $user, "cities" => $cities, "title" => "Home"]);
 
 ?>

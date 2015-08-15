@@ -26,7 +26,7 @@
         <tbody>
         <?php foreach ($cities as $city): ?>
             <tr>
-                <td><?= $city["rank"] ?></td>
+                <td><input type="number" min="1" max="<?= $user["numcities"] ?>" step="-1" style="width: 30px; height: 30px;" value="<?= $city["rank"] ?>"></td>
                 <td><?= $city["city_name"] ?></td>
                 <td><?= $city["pop"] ?></td>
                 <td>$<?= $city["rent"] ?></td>
