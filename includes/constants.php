@@ -10,12 +10,12 @@
     define("DATABASE", "wheretolive");
 
     // your database's password
-    define("PASSWORD", "crimson");
+    define("PASSWORD", "foitubotwsaotg");
 
     // your database's server
     define("SERVER", "localhost");
 
     // your database's username
-    define("USERNAME", "jharvard");
+    define("USERNAME", "root");
 
 ?>
