@@ -32,6 +32,7 @@
                     "status" => $job["status"],
                     "salary" => number_format($job["salary"], 2),
                     "notes" => $job["notes"],
+                    "id" => $job["id"]
                 ];
             }
         }
@@ -39,8 +40,8 @@
         $cities[] = [
             "rank" => $row["rank"],
             "city_name" => $city_name,
-            "pop" => $city["population"],
-            "rent" => $city["rent"],
+            "pop" => number_format($city["population"], 0),
+            "rent" => number_format($city["rent"], 0),
             "walk" => $city["walkscore"],
             "bike" => $city["bikescore"],
             "transit" => $city["transitscore"],

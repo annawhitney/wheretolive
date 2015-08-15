@@ -29,35 +29,48 @@
                 <td><?= $city["rank"] ?></td>
                 <td><?= $city["city_name"] ?></td>
                 <td><?= $city["pop"] ?></td>
-                <td><?= $city["rent"] ?></td>
+                <td>$<?= $city["rent"] ?></td>
                 <td><?= $city["walk"] ?></td>
                 <td><?= $city["bike"] ?></td>
                 <td><?= $city["transit"] ?></td>
             </tr>
             <?php if (!empty($city["positions"])): ?>
             <tr>
-                <table class="table table-condensed">
-                    <thead>
-                        <tr>
-                            <th>Company</th>
-                            <th>Position</th>
-                            <th>Salary</th>
-                            <th>Notes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($city["positions"] as $position): ?>
+                <td></td>
+                <td colspan="6">
+                    <table class="table table-condensed jobs">
+                        <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th>Position</th>
+                                <th>Status</th>
+                                <th>Salary</th>
+                                <th>Notes</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($city["positions"] as $position): ?>
 
-                        <tr>
-                            <td><?= $position["company"] ?></td>
-                            <td><?= $position["position"] ?></td>
-                            <td>$<?= $position["salary"] ?></td>
-                            <td><?= $position["notes"] ?></td>
-                        </tr>
+                            <tr>
+                                <td><?= $position["company"] ?></td>
+                                <td><?= $position["position"] ?></td>
+                                <td><?= $position["status"] ?></td>
+                                <td>$<?= $position["salary"] ?></td>
+                                <td><?= $position["notes"] ?></td>
+                                <td><a href="edit_job.php?id=<?= $position["id"] ?>">Edit</a></td>
+                            </tr>
 
-                    <?php endforeach ?>
-                    </tbody>
-                </table>
+                        <?php endforeach ?>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <?php else: ?>
+            <tr>
+                <td></td>
+                <td class="jobs">No jobs yet in this city.</td>
+                <td colspan="5"></td>
             </tr>
             <?php endif ?>
         <?php endforeach ?>

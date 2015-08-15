@@ -9,15 +9,15 @@
 <form action="add_job.php" method="post">
     <fieldset>
         <div class="form-group">
-        <input autofocus name="company" placeholder="Company" type="text" <?php if (!empty($inprogress["company"])): ?>value=<?= $inprogress["company"] ?><?php endif ?> required>
+        <input autofocus name="company" placeholder="Company" type="text" <?php if (!empty($inprogress["company"])): ?>value="<?= $inprogress["company"] ?>"<?php endif ?> required>
         </div>
         <div class="form-group">
-            <input name="position" placeholder="Position" type="text" <?php if (!empty($inprogress["position"])): ?>value=<?= $inprogress["position"] ?><?php endif ?> required>
+            <input name="position" placeholder="Position" type="text" <?php if (!empty($inprogress["position"])): ?>value="<?= $inprogress["position"] ?>"<?php endif ?> required>
         </div>
         <div class="form-group">
             <select name="city" required>
             <?php foreach ($cities as $city): ?>
-                <option value=<?= $city["id"] ?><?php if (!empty($new_city)): ?><?php if ($city["id"] == $new_city): ?>selected<?php endif ?><?php endif ?>><?= $city["city_name"] ?></option>
+                <option value="<?= $city["id"] ?>" <?php if (!empty($new_city)): ?><?php if ($city["id"] == $new_city): ?>selected<?php endif ?><?php endif ?>><?= $city["city_name"] ?></option>
             <?php endforeach ?>
                 <option value="new">Add A New City</option>
             </select>
@@ -35,7 +35,7 @@
             </select>
         </div>
         <div class="form-group">
-            <input name="salary" placeholder="Salary" type="number" min="1" <?php if (!empty($inprogress["salary"])): ?>value=<?= $inprogress["salary"] ?><?php endif ?>/>
+            <input name="salary" placeholder="Salary" type="number" min="1" <?php if (!empty($inprogress["salary"])): ?>value="<?= $inprogress["salary"] ?>"<?php endif ?>/>
         </div>
         <div class="form-group">
             <textarea name="notes" rows="5" cols="30"><?php if (!empty($inprogress["notes"])): ?><?= $inprogress["notes"] ?><?php else: ?>Enter notes here<?php endif ?></textarea>
