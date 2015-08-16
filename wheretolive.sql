@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 15, 2015 at 02:55 PM
+-- Generation Time: Aug 16, 2015 at 06:01 PM
 -- Server version: 5.5.41-0ubuntu0.14.04.1-log
 -- PHP Version: 5.5.9-1ubuntu4.6
 
@@ -124,24 +124,24 @@ CREATE TABLE IF NOT EXISTS `usercities` (
   `user` int(11) NOT NULL,
   `city` int(11) NOT NULL,
   `rank` int(11) NOT NULL,
-  PRIMARY KEY (`user`,`city`),
-  UNIQUE KEY `user` (`user`,`rank`)
+  `notes` text COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`user`,`city`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `usercities`
 --
 
-INSERT INTO `usercities` (`user`, `city`, `rank`) VALUES
-(1, 1, 1),
-(1, 2, 2),
-(1, 3, 3),
-(1, 4, 4),
-(1, 5, 5),
-(1, 7, 6),
-(1, 8, 7),
-(1, 9, 8),
-(1, 10, 9);
+INSERT INTO `usercities` (`user`, `city`, `rank`, `notes`) VALUES
+(1, 1, 1, ''),
+(1, 2, 3, ''),
+(1, 3, 7, ''),
+(1, 4, 6, ''),
+(1, 5, 4, ''),
+(1, 7, 5, ''),
+(1, 8, 2, ''),
+(1, 9, 8, ''),
+(1, 10, 9, '');
 
 -- --------------------------------------------------------
 
