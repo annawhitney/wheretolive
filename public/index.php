@@ -19,7 +19,8 @@
     $cities = [];
     foreach ($rows as $row)
     {
-        $city = query("SELECT * FROM cities WHERE id = ?", $row["city"])[0];
+        $id = $row["city"];
+        $city = query("SELECT * FROM cities WHERE id = ?", $id)[0];
         $city_name = $city["name"] . ", " . $city["state"];
         
         // get all jobs belonging to current user in this city
@@ -42,6 +43,7 @@
         }
 
         $cities[] = [
+            "id" => $id,
             "rank" => $row["rank"],
             "city_name" => $city_name,
             "pop" => number_format($city["population"], 0),

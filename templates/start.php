@@ -23,10 +23,11 @@
     <p><?= $message ?></p>
     <?php endif ?>
     <?php if (!empty($cities)): ?>
+    <form action="change_rank.php" method="post">
         <tbody>
         <?php foreach ($cities as $city): ?>
             <tr>
-                <td><input type="number" min="1" max="<?= $user["numcities"] ?>" step="-1" style="width: 30px; height: 30px;" value="<?= $city["rank"] ?>"></td>
+                <td><input name="<?= $city["id"] ?>" type="number" class="mod" min="1" max="<?= $user["numcities"] ?>" step="-1" onchange="this.form.submit()" onkeyup="this.form.submit()" value="<?= $city["rank"] ?>"></td>
                 <td><?= $city["city_name"] ?></td>
                 <td><?= $city["pop"] ?></td>
                 <td>$<?= $city["rent"] ?></td>
@@ -75,6 +76,7 @@
             <?php endif ?>
         <?php endforeach ?>
       </tbody>
+    </form>
     <?php endif ?>
     </table>
 </div>

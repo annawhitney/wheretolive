@@ -1,9 +1,6 @@
 /**
  * styles.css
  *
- * Computer Science 50
- * Problem Set 7
- *
  * Global CSS.
  */
 
@@ -36,4 +33,44 @@
 
     /* center contents */
     text-align: center;
+}
+
+.jobs
+{
+    font-size: small;
+    text-align: left;
+}
+
+input[type="number"] {
+    position: relative;
+    border: 1px solid #BBB;
+    border-color: #BBB #ECECEC #ECECEC #BBB;
+    padding: .2rem;
+}
+
+input[type="number"].mod
+{
+    width: 30px;
+    height: 30px;
+}
+
+input[type="number"].mod::-webkit-outer-spin-button, 
+input[type="number"].mod::-webkit-inner-spin-button
+{
+    -webkit-appearance: none;
+    background: #FFF url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAZCAYAAAAFbs/PAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAATFJREFUeNpifP78RQIDA8MEIOZnwA8+AnEBI1DDByIUwzUxkaAYBPhZQOSpM2cZ9uzejVeli6srg5mJMQNYA4ixccMGhhvXr2NVrKGpCVYDAkwwwfz8fAYhYWEMxSAxkBwMwDWIiYowBAYFY2gAiYHkMDSAgJeHG4OtnT2cD2KDxJABE7qJKSlJYGeAMIiNDljQBXi4uRlS09LgbIIaYKGGCzAxkAjANrx6/YYoxaDQYoExiAUkOwmrBlDaAmGcfkAGX75+ZZg9axaYraXZhxG0GDbMmTOP4d3bt2AMYuN10rYduxgOHzoI54PYIDGsGkBBu37dWgwTQWLIwQ7XMHHiRLAz0AFIDCSH4mlQiHADPWdsYoIzOEFqQEkGVAj8JzUePpKgHlxqFBCpCVwuAQQYAGXZZKTpeeQbAAAAAElFTkSuQmCC) no-repeat center center;
+    width: 1em;
+    border-left: 1px solid #BBB;
+    opacity: .5; /* shows Spin Buttons per default (Chrome >= 39) */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+input[type="number"].mod::-webkit-inner-spin-button:hover,
+input[type="number"].mod::-webkit-inner-spin-button:active
+{
+      box-shadow: 0 0 2px #0CF;
+      opacity: .8;
 }

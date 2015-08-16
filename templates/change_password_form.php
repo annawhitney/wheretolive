@@ -1,9 +1,7 @@
 <ul class="nav nav-pills">
     <li><a href="index.php">Home</a></li>
-    <li><a href="quote.php">Quote</a></li>
-    <li><a href="buy.php">Buy</a></li>
-    <li><a href="sell.php">Sell</a></li>
-    <li><a href="history.php">History</a></li>
+    <li ><a href="add_job.php">Add A Job</a></li>
+    <li><a href="add_city.php">Add A City</a></li>
     <li class="active"><a href="change_password.php">Change Password</a></li>
     <li><a href="logout.php">Log Out</a></li>
 </ul>
