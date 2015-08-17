@@ -1,11 +1,3 @@
-<ul class="nav nav-pills">
-    <li class="active"><a href="index.php">Home</a></li>
-    <li><a href="add_job.php">Add A Job</a></li>
-    <li><a href="add_city.php">Add A City</a></li>
-    <li><a href="change_password.php">Change Password</a></li>
-    <li><a href="logout.php">Log Out</a></li>
-</ul>
-
 <div>
     <table class="table table-striped">
         <thead>

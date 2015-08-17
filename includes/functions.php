@@ -161,6 +161,13 @@
             // render header
             require("../templates/header.php");
 
+            // if user is logged in
+            if (!empty($_SESSION["id"]))
+            {
+                // render navbar
+                require("../templates/navbar.php");
+            }
+
             // render template
             require("../templates/$template");
 

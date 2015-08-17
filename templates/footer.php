@@ -1,7 +1,7 @@
             </div>
 
             <div id="bottom">
-                Copyright &#169; John Harvard
+                &#169; 2015 Anna Whitney
             </div>
 
         </div>
