@@ -17,10 +17,11 @@
                 <th>WalkScore</th>
                 <th>BikeScore</th>
                 <th>TransitScore</th>
+                <th></th>
             </tr>
         </thead>
     <?php if (!empty($message)): ?>
-    <p><?= $message ?></p>
+    <tr><td colspan="8"><?= $message ?></td></tr>
     <?php endif ?>
     <?php if (!empty($cities)): ?>
     <form action="change_rank.php" method="post">
@@ -34,6 +35,7 @@
                 <td><?= $city["walk"] ?></td>
                 <td><?= $city["bike"] ?></td>
                 <td><?= $city["transit"] ?></td>
+                <td><a class="x" href="remove_city.php?id=<?= $city["id"] ?>">X</a></td>
             </tr>
             <?php if (!empty($city["positions"])): ?>
             <tr>
@@ -66,12 +68,12 @@
                         </tbody>
                     </table>
                 </td>
+                <td></td>
             </tr>
             <?php else: ?>
             <tr>
                 <td></td>
-                <td class="jobs">No jobs yet in this city.</td>
-                <td colspan="5"></td>
+                <td class="jobs" colspan="7">No jobs yet in this city.</td>
             </tr>
             <?php endif ?>
         <?php endforeach ?>

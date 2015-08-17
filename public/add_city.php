@@ -20,7 +20,14 @@
         $num = query("SELECT numcities FROM users WHERE id=?", $_SESSION["id"]);
 
         // add row to usercities database
-        query("INSERT INTO usercities (user, city, rank) VALUES(?, ?, ?)", $_SESSION["id"], $city_id, $num[0]["numcities"]);
+        $rows = query("INSERT INTO usercities (user, city, rank) VALUES(?, ?, ?)", $_SESSION["id"], $city_id, $num[0]["numcities"]);
+
+        // if user already had this city (and thus no new row added)
+        if (!is_array($num_rows))
+        {
+            // undo incrementing number of cities
+            query("UPDATE users SET numcities=numcities-1 WHERE id=?", $_SESSION["id"]);
+        }
 
         // if we have the hidden POST parameter saying we came from adding a job
         if (!empty($_POST["id"]))

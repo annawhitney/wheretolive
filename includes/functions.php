@@ -93,7 +93,16 @@
         // return result set's rows, if any
         if ($results !== false)
         {
-            return $statement->fetchAll(PDO::FETCH_ASSOC);
+            $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+            if (!empty($rows))
+            {
+                return $rows;
+            }
+            // otherwise return count of affected rows
+            else
+            {
+                return $statement->rowCount();
+            }
         }
         else
         {

@@ -14,6 +14,7 @@
     {
         // render with message saying you don't have any cities and should add some
         render("start.php", ["message" => "You haven't added any cities. <a href='add_city.php'>Add a city</a> to get started.", "title" => "Jobs"]);
+        return;
     }
 
     $cities = [];
