@@ -48,3 +48,14 @@
         </div>
     </fieldset>
 </form>
+<form action="delete_job.php" method="post">
+    <fieldset>
+        <div class="form-group">
+            <input name="id" type="hidden" value="<?= $current["id"] ?>"/>
+        </div>
+        <div class="form-group">
+            <label>or</label>
+            <button type="submit" class="btn btn-danger btn-sm">Delete Job</button>
+        </div>
+    </fieldset>
+</form>
