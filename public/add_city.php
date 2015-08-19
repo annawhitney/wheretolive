@@ -20,7 +20,7 @@
         $num = query("SELECT numcities FROM users WHERE id=?", $_SESSION["id"]);
 
         // add row to usercities database
-        $rows = query("INSERT INTO usercities (user, city, rank) VALUES(?, ?, ?)", $_SESSION["id"], $city_id, $num[0]["numcities"]);
+        $num_rows = query("INSERT INTO usercities (user, city, rank) VALUES(?, ?, ?)", $_SESSION["id"], $city_id, $num[0]["numcities"]);
 
         // if user already had this city (and thus no new row added)
         if (!is_array($num_rows))
