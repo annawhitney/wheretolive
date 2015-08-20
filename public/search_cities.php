@@ -13,8 +13,8 @@
 
         if (!empty($_POST["name"]))
         {
-            $query .= " WHERE name LIKE '?%'";
-            $args[] = $_POST["name"];
+            $query .= " WHERE name LIKE ?";
+            $args[] = $_POST["name"] . "%";
             $first = false;
         }
 
@@ -89,8 +89,8 @@
         }
 
         // order by given field (default is 'name')
-        $query .= " ORDER BY ?";
-        $args[] = $_POST["order_by"];
+        // not using PDO ? to include field name to order by because it doesn't get parsed as a column name if quoted and is picked from a dropdown menu anyway
+        $query .= " ORDER BY " . $_POST["order_by"];
 
         // prepend query to list of args
         array_unshift($args, $query);
