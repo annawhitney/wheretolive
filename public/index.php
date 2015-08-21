@@ -17,6 +17,23 @@
         return;
     }
 
+    $sharing = [];
+    // see if anyone shared with this user
+    $users = query("SELECT user FROM sharing WHERE shared = ?", $_SESSION["id"]);
+
+    if (is_array($users))
+    {
+        foreach ($users as $s_user)
+        {
+            $name = query("SELECT username FROM users WHERE id = ?", $s_user["user"]);
+
+            $sharing[] = [
+                "id" => $s_user["user"],
+                "username" => $name[0]["username"]
+            ];
+        }
+    }
+
     $cities = [];
     foreach ($rows as $row)
     {
@@ -33,6 +50,8 @@
             foreach ($jobs as $job)
             {
                 $positions[] = [
+                    "mine" => true,
+                    "user" => $user["username"],
                     "company" => $job["company"],
                     "position" => $job["position"],
                     "status" => $job["status"],
@@ -40,6 +59,32 @@
                     "notes" => $job["notes"],
                     "id" => $job["id"]
                 ];
+            }
+        }
+
+        // if other users have shared with current user, get their jobs too
+        if (!empty($sharing))
+        {
+            foreach ($sharing as $share)
+            {
+                $s_jobs = query("SELECT * FROM jobs WHERE user = ? AND city = ?", $share["id"], $row["city"]);
+
+                if (!empty($s_jobs))
+                {
+                    foreach ($s_jobs as $s_job)
+                    {
+                        $positions[] = [
+                            "mine" => false,
+                            "user" => $share["username"],
+                            "company" => $s_job["company"],
+                            "position" => $s_job["position"],
+                            "status" => $s_job["status"],
+                            "salary" => number_format($s_job["salary"], 2),
+                            "notes" => $s_job["notes"],
+                            "id" => $s_job["id"]
+                        ];
+                    }
+                }
             }
         }
 

@@ -20,7 +20,7 @@
         <tbody>
         <?php foreach ($cities as $city): ?>
             <tr>
-                <td><input name="<?= $city["id"] ?>" type="number" class="mod" min="1" max="<?= $user["numcities"] ?>" step="-1" onchange="this.form.submit()" onkeyup="this.form.submit()" value="<?= $city["rank"] ?>"></td>
+                <td><input name="<?= $city["id"] ?>" type="number" class="mod" min="1" max="<?= $user["numcities"] ?>" onchange="this.form.submit()" onkeyup="this.form.submit()" value="<?= $city["rank"] ?>"></td>
                 <td><?= $city["city_name"] ?></td>
                 <td><?= $city["pop"] ?></td>
                 <td>$<?= $city["rent"] ?></td>
@@ -36,6 +36,7 @@
                     <table class="table table-condensed jobs">
                         <thead>
                             <tr>
+                                <th>User</th>
                                 <th>Company</th>
                                 <th>Position</th>
                                 <th>Status</th>
@@ -46,14 +47,14 @@
                         </thead>
                         <tbody>
                         <?php foreach ($city["positions"] as $position): ?>
-
-                            <tr>
+                            <tr <?php if ($position["mine"]): ?>class="success"<?php else: ?>class="info"<?php endif ?>>
+                                <td><?= $position["user"] ?></td>
                                 <td><?= $position["company"] ?></td>
                                 <td><?= $position["position"] ?></td>
                                 <td><?= $position["status"] ?></td>
                                 <td>$<?= $position["salary"] ?></td>
                                 <td><?= $position["notes"] ?></td>
-                                <td><a href="edit_job.php?id=<?= $position["id"] ?>">Edit</a></td>
+                                <td><?php if ($position["mine"]): ?><a href="edit_job.php?id=<?= $position["id"] ?>">Edit</a><?php endif ?></td>
                             </tr>
 
                         <?php endforeach ?>
