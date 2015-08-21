@@ -1,3 +1,6 @@
+<?php if (!empty($message)): ?>
+<p><?= $message ?></p>
+<?php else: ?>
 <form action="add_job.php" method="post">
     <fieldset>
         <div class="form-group">
@@ -37,3 +40,4 @@
         </div>
     </fieldset>
 </form>
+<?php endif ?>

@@ -29,29 +29,13 @@
             query("UPDATE users SET numcities=numcities-1 WHERE id=?", $_SESSION["id"]);
         }
 
-        // if we have the hidden POST parameter saying we came from adding a job
-        if (!empty($_POST["id"]))
-        {
-            // redirect back to adding a job
-            redirect("add_job.php?id=" . $_POST["id"] . "&city=" . $city_id);
-        }
-
         // redirect to homepage
         redirect("/");
     }
     else
     {
-        // if we have a GET parameter saying we came from adding a job
-        if (!empty($_GET["id"]))
-        {
-            // render form passing id
-            render("add_city_form.php", ["id" => $_GET["id"], "title" => "Add A City"]);
-        }
-        else
-        {
-            // render form
-            render("add_city_form.php", ["title" => "Add A City"]);
-        }
+        // render form
+        render("add_city_form.php", ["title" => "Add A City"]);
     }
 
 ?>

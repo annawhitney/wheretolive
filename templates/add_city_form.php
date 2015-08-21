@@ -20,11 +20,6 @@
             <input name="transit" placeholder="TransitScore" type="number" min="1"/>
             <input name="bike" placeholder="BikeScore" type="number" min="1"/>
         </div>
-        <?php if (!empty($id)): ?>
-        <div class="form-group">
-            <input name="id" type="hidden" value=<?= $id ?>/>
-        </div>
-        <?php endif ?>
         <div class="form-group">
             <button type="submit" class="btn btn-default">Add City</button>
         </div>
