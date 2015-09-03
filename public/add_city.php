@@ -22,10 +22,10 @@
         // add row to usercities database
         $num_rows = query("INSERT INTO usercities (user, city, rank) VALUES(?, ?, ?)", $_SESSION["id"], $city_id, $num[0]["numcities"]);
 
-        // if user already had this city (and thus no new row added)
-        if (!is_array($num_rows))
+        // if user tried to add a city they already have
+        if (empty($num_rows))
         {
-            // undo incrementing number of cities
+            // undo increment of user's number of cities
             query("UPDATE users SET numcities=numcities-1 WHERE id=?", $_SESSION["id"]);
         }
 
