@@ -2,4 +2,4 @@
 
 A tool to compare city and job data.
 
-Soon to live at wheretolive.us!
+Live at [wheretolive.us](http://wheretolive.us)!
